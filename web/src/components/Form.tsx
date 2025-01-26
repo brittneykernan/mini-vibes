@@ -11,10 +11,7 @@ export default function Form({
       className="flex flex-col space-y-4 bg-gray-50 bg-opacity-10 px-4 pb-8 sm:px-16"
     >
       <div>
-        <label
-          htmlFor="email"
-          className="block"
-        >
+        <label htmlFor="email" className="block">
           Email Address
         </label>
         <input
@@ -24,14 +21,11 @@ export default function Form({
           placeholder=""
           autoComplete="email"
           required
-          className="mt-1 bg-white bg-opacity-10 block w-full appearance-none rounded-md border border-none px-3 py-2 placeholder-black shadow-sm focus:outline-purple-800 focus:ring-purple-800 text-base"
+          className="mt-1 block w-full appearance-none rounded-md border border-none bg-white bg-opacity-10 px-3 py-2 text-base shadow-sm placeholder:text-black focus:outline-purple-800 focus:ring-purple-800"
         />
       </div>
       <div>
-        <label
-          htmlFor="password"
-          className="block"
-        >
+        <label htmlFor="password" className="block">
           Password
         </label>
         <input
@@ -39,7 +33,7 @@ export default function Form({
           name="password"
           type="password"
           required
-          className="mt-1 bg-white bg-opacity-10 block w-full appearance-none rounded-md border border-none px-3 py-2 placeholder-black shadow-sm focus:outline-purple-800 focus:outline-hidden focus:ring-none text-base"
+          className="focus:outline-hidden focus:ring-none mt-1 block w-full appearance-none rounded-md border border-none bg-white bg-opacity-10 px-3 py-2 text-base shadow-sm placeholder:text-black focus:outline-purple-800"
         />
       </div>
       {children}

@@ -1,8 +1,7 @@
 import '@/styles/globals.css';
 
-let title = 'Mini Vibes';
-let description =
-  'Mini web audio app';
+const title = 'Mini Vibes';
+const description = 'Mini web audio app';
 
 export const metadata = {
   title,
@@ -24,10 +23,10 @@ export default function RootLayout({
     <html lang="en">
       {/* Todo: Add tags necessary for SEO, marketing and PWA */}
       <body>
-        <div className="bg-gradient-to-tr from-red-500 to-purple-400 relative h-screen w-screen text-white">
-          <div className="w-screen h-screen flex flex-col justify-center items-center">
+        <div className="relative h-screen w-screen bg-gradient-to-tr from-red-500 to-purple-400 text-white">
+          <div className="flex h-screen w-screen flex-col items-center justify-center">
             {children}
-          </div>        
+          </div>
         </div>
       </body>
     </html>

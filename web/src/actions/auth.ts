@@ -1,12 +1,12 @@
-"use server"
+'use server';
 
-import { AuthError } from "next-auth";
 import { redirect } from 'next/navigation';
+import { AuthError } from 'next-auth';
 
-import { signIn } from "@/libs/auth";
-import { createUser, getUser } from "@/libs/db";
+import { signIn } from '@/libs/auth';
+import { createUser, getUser } from '@/libs/db';
 
-export async function authenticate (
+export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
@@ -33,14 +33,13 @@ export async function register(
   prevState: string | undefined,
   formData: FormData,
 ) {
-    let email = formData.get('email') as string;
-    let password = formData.get('password') as string;
-    let user = await getUser(email);
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+  const user = await getUser(email);
 
-    if (user.length > 0) {
-      return 'User already exists'; // TODO: Handle errors with useFormStatus
-    } else {
-      await createUser(email, password);
-      redirect('/login');
-    }
+  if (user.length > 0) {
+    return 'User already exists'; // TODO: Handle errors with useFormStatus
   }
+  await createUser(email, password);
+  redirect('/login');
+}

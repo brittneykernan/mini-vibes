@@ -6,6 +6,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  // "include": ["**/*.ts", "**/*.tsx"],
+  "include": [], // Do not include files directly
+  "exclude": ["node_modules"],
+  "references": [
+    { "path": "./web" } // Reference the web project
+  ]
 }

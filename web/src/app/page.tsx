@@ -3,23 +3,23 @@ import Link from 'next/link';
 export default function Page() {
   return (
     <>
-      <div className="text-center max-w-screen-sm mb-10">
-        <h1 className="font-primary font-extrabold text-white text-5xl md:leading-tight">
+      <div className="mb-10 max-w-screen-sm text-center">
+        <h1 className="font-primary text-5xl font-extrabold text-white md:leading-tight">
           Mini Vibes
         </h1>
-      </div>        
+      </div>
       <div className="flex space-x-3">
         <Link
           href="/login"
-          className="py-3 px-4 bg-palette-secondary hover:bg-palette-dark text-white text-base font-semibold rounded-lg border border-transparent 
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-palette-primary block"
+          className="bg-palette-secondary hover:bg-palette-dark focus-visible:ring-palette-primary block rounded-lg border border-transparent px-4 py-3 text-base 
+        font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
         >
           Login
         </Link>
         <Link
           href="/register"
-          className="py-3 px-4 bg-palette-primary hover:bg-palette-dark text-white text-base font-semibold rounded-lg border border-transparent 
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-palette-primary block"
+          className="bg-palette-primary hover:bg-palette-dark focus-visible:ring-palette-primary block rounded-lg border border-transparent px-4 py-3 text-base 
+        font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
         >
           Register
         </Link>

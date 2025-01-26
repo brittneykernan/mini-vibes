@@ -1,32 +1,32 @@
-import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
-import { eq } from 'drizzle-orm';
+import { createClient } from '@libsql/client';
 import { genSaltSync, hashSync } from 'bcrypt-ts';
+import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/libsql';
-import { createClient } from "@libsql/client";
+import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-// Would prefer the Express server act as data layer and interface with DB and own auth
+// Would prefer the Express server act as data layer - interface with DB and own auth -
 // so we can leave the Next.js app for presentation, and simplify security audits per layer
 // todo: move this to express server
-const client = createClient({ url: "file:local.db" });
-let db = drizzle(client);
+const client = createClient({ url: 'file:local.db' });
+const db = drizzle(client);
 
 export async function getUser(email: string) {
   const users = await ensureTableExists();
-  
-  return await db.select().from(users).where(eq(users.email, email));
+
+  return db.select().from(users).where(eq(users.email, email));
 }
 
 export async function createUser(email: string, password: string) {
   const users = await ensureTableExists();
-  let salt = genSaltSync(10);
-  let hash = hashSync(password, salt);
+  const salt = genSaltSync(10);
+  const hash = hashSync(password, salt);
 
-  return await db.insert(users).values({ email, password: hash });
+  return db.insert(users).values({ email, password: hash });
 }
 
 async function ensureTableExists() {
   const result = await client.execute(
-      `SELECT name FROM sqlite_master WHERE type='table' AND name='User';`
+    `SELECT name FROM sqlite_master WHERE type='table' AND name='User';`,
   );
 
   if (result.rows.length === 0) {

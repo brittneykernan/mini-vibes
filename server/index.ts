@@ -48,6 +48,8 @@ const tracks = [
   }
 ];
 
+// todo: move database initialization and session persistence here
+
 // todo: add middlware for cross cutting concerns
 // like security, authorization, caching, rate limiting
 

@@ -2,20 +2,24 @@
 
 import { useFormStatus } from 'react-dom';
 
-export default function SubmitButton({ children }: { children: React.ReactNode }) {
+export default function SubmitButton({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { pending } = useFormStatus();
 
   return (
     <button
       type={pending ? 'button' : 'submit'}
       aria-disabled={pending}
-      className="py-3 px-4 bg-palette-primary hover:bg-palette-dark text-white text-base font-semibold rounded-lg border border-transparent 
-      focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-palette-primary block"
-         >
+      className="bg-palette-primary hover:bg-palette-dark focus-visible:ring-palette-primary block rounded-lg border border-transparent px-4 py-3 text-base 
+      font-semibold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+    >
       {children}
       {pending && (
         <svg
-          className="animate-spin ml-2 h-4 w-4 text-white inline-block"
+          className="ml-2 inline-block size-4 animate-spin text-white"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
