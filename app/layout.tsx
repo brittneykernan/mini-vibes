@@ -1,7 +1,5 @@
 import './globals.css';
 
-import { GeistSans } from 'geist/font/sans';
-
 let title = 'Next.js + Postgres Auth Starter';
 let description =
   'This is a Next.js starter kit that uses NextAuth.js for simple email + password login and a Postgres database to persist the data.';
@@ -24,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={GeistSans.variable}>
+      <body>
         <div className="bg-gradient-to-tr from-red-500 to-purple-400 relative h-screen w-screen text-white">
           <div className="w-screen h-screen flex flex-col justify-center items-center">
             {children}
