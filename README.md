@@ -11,9 +11,49 @@ Thank you for the opportunity and for reviewing my code.
 * [AmplitudeJS](https://github.com/serversideup/amplitudejs) minimle simple audio library
 * [Express](https://expressjs.com/) to keep data mutation out of the frontend
 * [TypeSript](https://www.typescriptlang.org/) for less bugs
-* [ESlint](https://eslint.org/) but of course
+* [ESlint](https://eslint.org/) cleanliness
 
 ## Architecture
+
+Current: 
+```
+├── server
+|  ├── index.ts
+└── web
+   ├── public
+   ├── src
+      ├── actions
+      ├── app
+      ├── components
+      ├── libs
+      ├── middleware.ts
+      ├── styles
+      └── types
+```
+
+Ideal:
+```
+├── server
+|  └── src - break up concerns
+|       ├── config
+|       ├── db
+|       |   └── auth
+|       |   └── users
+|       |   └── tracks 
+|       ├── lib
+|           └── caching
+|       ├── middlewares
+|       ├── v1
+|           └── auth
+|           └── users
+|           └── tracks
+└── web - mostly the same structure with a few more concerns
+   ├── src
+      ├── middlewares - csp, logging, redirects
+      ├── tests (should live alongside files)
+      ├── helpers
+      ├── icons (could be in components)
+```
 
 ## Developing Locally
 
