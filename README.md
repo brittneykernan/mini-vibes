@@ -1,7 +1,5 @@
 # Mini Vibes
 
-Thank you for the opportunity and for reviewing my code. 
-
 ## Tech Stack
 * [Next.js](https://nextjs.org/) App Router for faster UI
 * [NextAuth.js](https://next-auth.js.org/) for simplicity
