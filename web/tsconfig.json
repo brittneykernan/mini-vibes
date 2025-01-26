@@ -12,7 +12,8 @@
       "@/libs/*": ["src/libs/*"],
       "@/pages/*": ["src/pages/*"],
       "@/public/*": ["public/*"],
-      "@/styles/*": ["src/styles/*"]
+      "@/styles/*": ["src/styles/*"],
+      "@/types/*": ["src/types/*"]
     },
     "strict": true,
     "forceConsistentCasingInFileNames": true,

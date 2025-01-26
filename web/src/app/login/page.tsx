@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useActionState } from 'react';
 
-import { Form } from '@/components/Form';
-import { SubmitButton } from '@/components/SubmitButton';
+import Form from '@/components/Form';
+import SubmitButton from '@/components/SubmitButton';
 import { authenticate } from '@/actions/auth';
 
 export default function Login() {

@@ -1,9 +1,10 @@
 "use client"
 
 import Link from 'next/link';
-import { Form } from '@/components/Form';
 import { useActionState } from 'react';
-import { SubmitButton } from '@/components/SubmitButton';
+
+import { Form } from '@/components/Form';
+import SubmitButton from '@/components/SubmitButton';
 import { register } from '@/actions/auth';
 
 export default function Login() {

@@ -1,0 +1,12 @@
+{
+  "name": "mini-vibes",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "workspaces": ["web", "server"]
+}

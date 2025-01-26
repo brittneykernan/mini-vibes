@@ -4,6 +4,9 @@ import { genSaltSync, hashSync } from 'bcrypt-ts';
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from "@libsql/client";
 
+// Would prefer the Express server act as data layer and interface with DB and own auth
+// so we can leave the Next.js app for presentation, and simplify security audits per layer
+// todo: move this to express server
 const client = createClient({ url: "file:local.db" });
 let db = drizzle(client);
 

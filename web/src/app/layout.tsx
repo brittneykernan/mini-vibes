@@ -1,8 +1,8 @@
 import '@/styles/globals.css';
 
-let title = 'Next.js + Postgres Auth Starter';
+let title = 'Mini Vibes';
 let description =
-  'This is a Next.js starter kit that uses NextAuth.js for simple email + password login and a Postgres database to persist the data.';
+  'Mini web audio app';
 
 export const metadata = {
   title,
@@ -12,7 +12,7 @@ export const metadata = {
     title,
     description,
   },
-  metadataBase: new URL('https://nextjs-postgres-auth.vercel.app'),
+  metadataBase: new URL('https://minivibes.com'),
 };
 
 export default function RootLayout({
@@ -22,6 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* Todo: Add tags necessary for SEO, marketing and PWA */}
       <body>
         <div className="bg-gradient-to-tr from-red-500 to-purple-400 relative h-screen w-screen text-white">
           <div className="w-screen h-screen flex flex-col justify-center items-center">

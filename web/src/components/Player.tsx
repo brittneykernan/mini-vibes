@@ -4,10 +4,13 @@
 import Amplitude from "amplitudejs"
 import { useEffect, useRef, useState } from "react";
 
-export function Player({ songs }) {
+import { Track } from "@/types/audio"
+
+// todo: properly type Tracks
+export default function Player({ tracks }: { tracks: Array<Track> }) {
   // todo: add types to values of hooks
   const saveButtonRef = useRef<HTMLDivElement>(null)
-  const [ isSongSaved, setIsSongSaved ] = useState(false)
+  const [ isTrackSaved, setIsTrackSaved ] = useState(false)
   
   useEffect(() => {
     Amplitude.init({
@@ -33,14 +36,19 @@ export function Player({ songs }) {
           slider.style.backgroundSize = percentage + '% 100%';
         }
       },
-      "songs": songs
+      "songs": tracks
     });
-  }, [songs])
+
+    return () => {
+      // todo: properly destroy Amplitude instance
+      Amplitude.stop()
+    }
+  }, [tracks])
  
-  const saveSong = () => {
+  const saveTrack = () => {
     // todo: toggle save particular to local state 
     // and persist and reflect that state via the api
-    setIsSongSaved((currentState) =>  !currentState)
+    setIsTrackSaved((currentState) =>  !currentState)
   }
 
   // todo: break this component into smaller pieces to prevent rerendering the whole player on state change
@@ -65,7 +73,7 @@ export function Player({ songs }) {
         </div>
       </div>
       <div className="h-control-panel px-3 sm:px-10 rounded-b-xl bg-control-panel-light-background border-t border-black border-opacity-10	 flex items-center justify-between z-50">
-        <div ref={saveButtonRef} onClick={saveSong} className={`cursor-pointer ${ isSongSaved ? 'saved' : '' }`} id="song-saved">
+        <div ref={saveButtonRef} onClick={saveTrack} className={`cursor-pointer ${ isTrackSaved ? 'saved' : '' }`} id="song-saved">
           <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M25 7C25 3.68629 22.2018 1 18.75 1C16.1692 1 13.9537 2.5017 13 4.64456C12.0463 2.5017 9.83082 1 7.25 1C3.79822 1 1 3.68629 1 7C1 14.6072 8.49219 20.1822 11.6365 22.187C12.4766 22.7226 13.5234 22.7226 14.3635 22.187C17.5078 20.1822 25 14.6072 25 7Z" stroke="#ffffff" strokeWidth="2" strokeLinejoin="round"/>
           </svg>
