@@ -9,12 +9,13 @@ export function SubmitButton({ children }: { children: React.ReactNode }) {
     <button
       type={pending ? 'button' : 'submit'}
       aria-disabled={pending}
-      className="flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
-    >
+      className="py-3 px-4 bg-palette-primary hover:bg-palette-dark text-white text-base font-semibold rounded-lg border border-transparent 
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-palette-primary block"
+         >
       {children}
       {pending && (
         <svg
-          className="animate-spin ml-2 h-4 w-4 text-black"
+          className="animate-spin ml-2 h-4 w-4 text-white inline-block"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
