@@ -1,4 +1,4 @@
-# Brittney Kernan's Take Home Assignment 
+# Mini Vibes
 
 Thank you for the opportunity and for reviewing my code. 
 
