@@ -1,4 +1,4 @@
-import './globals.css';
+import '@/styles/globals.css';
 
 let title = 'Next.js + Postgres Auth Starter';
 let description =

@@ -4,7 +4,7 @@
 import Amplitude from "amplitudejs"
 import { useEffect, useRef, useState } from "react";
 
-export function Player({songs}) {
+export function Player({ songs }) {
   // todo: add types to values of hooks
   const saveButtonRef = useRef<HTMLDivElement>(null)
   const [ isSongSaved, setIsSongSaved ] = useState(false)
@@ -80,14 +80,14 @@ export function Player({songs}) {
             <path d="M6 5L6 27" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>	
         </div>
-        <div className="cursor-pointer amplitude-play-pause w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#c87095] border border-play-pause-light-border shadow-xl flex items-center justify-center dark:bg-play-pause-dark-background dark:border-play-pause-dark-border">
+        <div className="cursor-pointer amplitude-play-pause w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#c87095] shadow-xl flex items-center justify-center">
           <svg id="play-icon" className="ml-[10px]" width="31" height="37" viewBox="0 0 31 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd" d="M29.6901 16.6608L4.00209 0.747111C2.12875 -0.476923 0.599998 0.421814 0.599998 2.75545V33.643C0.599998 35.9728 2.12747 36.8805 4.00209 35.6514L29.6901 19.7402C29.6901 19.7402 30.6043 19.0973 30.6043 18.2012C30.6043 17.3024 29.6901 16.6608 29.6901 16.6608Z" className="fill-white dark:fill-slate-400"/>
+            <path fillRule="evenodd" clipRule="evenodd" d="M29.6901 16.6608L4.00209 0.747111C2.12875 -0.476923 0.599998 0.421814 0.599998 2.75545V33.643C0.599998 35.9728 2.12747 36.8805 4.00209 35.6514L29.6901 19.7402C29.6901 19.7402 30.6043 19.0973 30.6043 18.2012C30.6043 17.3024 29.6901 16.6608 29.6901 16.6608Z" className="fill-white"/>
           </svg>	
                         
           <svg id="pause-icon" width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="6" height="36" rx="3" className="fill-white dark:fill-slate-400"/>
-            <rect x="18" width="6" height="36" rx="3" className="fill-white dark:fill-slate-400" />
+            <rect width="6" height="36" rx="3" className="fill-white"/>
+            <rect x="18" width="6" height="36" rx="3" className="fill-white" />
           </svg>	
         </div>
         <div className="cursor-pointer amplitude-next">
@@ -110,7 +110,7 @@ export function Player({songs}) {
           </svg>	
         </div>
       </div>
-      <div className="hidden top-14 w-full absolute ml-auto mr-auto left-0 right-0 text-center max-w-lg h-72 rounded-full bg-highlight blur-2xl dark:block">
+      <div className="hidden top-14 w-full absolute ml-auto mr-auto left-0 right-0 text-center max-w-lg h-72 rounded-full bg-highlight blur-2xl">
       </div>
     </div>
   )

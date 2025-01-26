@@ -1,6 +1,5 @@
-import { auth, signOut } from 'app/auth';
-import { Player } from '../player';
-
+import { auth, signOut } from '@/libs/auth';
+import { Player } from '@/components/Player';
 
 // todo: get from express
 const songs = [
@@ -57,11 +56,11 @@ export default async function ProtectedPage() {
         <SignOut />
       </div>
 
-      {/* move to own component */}
       <div className="w-player flex flex-col justify-center gap-6 mx-3">
   
         <h2 className="font-bold text-xl">Recent Stories</h2>
 
+        {/* move to own component */}
         <div className="flex flex-wrap gap-y-3 sm:gap-y-0">
           {songs.map(({id, name, artist, album, cover_art_url}, index) => (
             <button key={id} className="amplitude-skip-to flex flex-row sm:p-3 sm:rounded-md gap-3 w-1/2 text-left  sm:hover:bg-white  sm:hover:bg-opacity-10" data-amplitude-location="0" data-amplitude-song-index={index} >

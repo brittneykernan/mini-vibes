@@ -1,10 +1,11 @@
 "use client"
 
 import Link from 'next/link';
-import { Form } from 'app/form';
-import { SubmitButton } from 'app/submit-button';
 import { useActionState } from 'react';
-import { authenticate } from '../actions/auth';
+
+import { Form } from '@/components/Form';
+import { SubmitButton } from '@/components/SubmitButton';
+import { authenticate } from '@/actions/auth';
 
 export default function Login() {
   const [errorMessage, formAction, isPending] = useActionState(

@@ -1,9 +1,10 @@
 "use server"
 
-import { signIn } from "app/auth";
 import { AuthError } from "next-auth";
-import { createUser, getUser } from "../db";
 import { redirect } from 'next/navigation';
+
+import { signIn } from "@/libs/auth";
+import { createUser, getUser } from "@/libs/db";
 
 export async function authenticate (
   prevState: string | undefined,
