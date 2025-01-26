@@ -80,7 +80,7 @@ export function Player({ songs }) {
             <path d="M6 5L6 27" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>	
         </div>
-        <div className="cursor-pointer amplitude-play-pause w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#c87095] shadow-xl flex items-center justify-center">
+        <div className="cursor-pointer -my-3 amplitude-play-pause w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#c87095] shadow-xl flex items-center justify-center">
           <svg id="play-icon" className="ml-[10px]" width="31" height="37" viewBox="0 0 31 37" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M29.6901 16.6608L4.00209 0.747111C2.12875 -0.476923 0.599998 0.421814 0.599998 2.75545V33.643C0.599998 35.9728 2.12747 36.8805 4.00209 35.6514L29.6901 19.7402C29.6901 19.7402 30.6043 19.0973 30.6043 18.2012C30.6043 17.3024 29.6901 16.6608 29.6901 16.6608Z" className="fill-white"/>
           </svg>	
@@ -109,8 +109,6 @@ export function Player({ songs }) {
             <path d="M5 25C4.44772 25 4 25.4477 4 26C4 26.5523 4.44772 27 5 27V25ZM27 27C27.5523 27 28 26.5523 28 26C28 25.4477 27.5523 25 27 25V27ZM5 27H27V25H5V27Z" fill="#ffffff"/>
           </svg>	
         </div>
-      </div>
-      <div className="hidden top-14 w-full absolute ml-auto mr-auto left-0 right-0 text-center max-w-lg h-72 rounded-full bg-highlight blur-2xl">
       </div>
     </div>
   )
