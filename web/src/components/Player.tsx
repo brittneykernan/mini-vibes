@@ -45,6 +45,7 @@ export function Player({ songs }) {
 
   // todo: break this component into smaller pieces to prevent rerendering the whole player on state change
   // todo: an accessibility audit to ensure player is accessible
+  // todo: remove unused css from codepen here and throughout app... ran out of time for that
   return (
     <div className="relative w-player flex flex-col rounded-xl shadow-player-light bg-player-light-background border border-player-light-border">
       <div className="px-10 pt-10 pb-4 flex items-center z-50">
