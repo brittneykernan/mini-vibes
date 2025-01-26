@@ -585,7 +585,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .w-player {
-  width: 640px;
+  max-width: 640px;
 }
 
 .w-24 {

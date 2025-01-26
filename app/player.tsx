@@ -4,49 +4,9 @@
 import Amplitude from "amplitudejs"
 import { useEffect, useRef, useState } from "react";
 
-// todo: get from express
-const songs = [
-  {
-    "name": "First Snow",
-    "artist": "Emancipator",
-    "album": "7,000 plays",
-    "url": "https://521dimensions.com/song/FirstSnow-Emancipator.mp3",
-    "cover_art_url": "https://images.unsplash.com/photo-1736457908762-d6ae9e5fb593?q=80&w=192&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    "name": "Intro / Sweet Glory",
-    "artist": "Jimkata",
-    "album": "21,345 plays",
-    "url": "https://521dimensions.com/song/IntroSweetGlory-Jimkata.mp3",
-    /* source: https://unsplash.com/photos/a-close-up-of-a-red-object-with-a-blurry-background-wEK9gAJPL8s */
-    "cover_art_url": "https://521dimensions.com/img/open-source/amplitudejs/album-art/die-digital.jpg"
-  },
-  {
-    "name": "Offcut #6",
-    "artist": "Little People",
-    "album": "500 plays",
-    "url": "https://521dimensions.com/song/Offcut6-LittlePeople.mp3",
-    "cover_art_url": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-but-hunks-of-wood.jpg"
-  },
-  {
-    "name": "Dusk To Dawn",
-    "artist": "Emancipator",
-    "album": "80,020 plays",
-    "url": "https://521dimensions.com/song/DuskToDawn-Emancipator.mp3",
-    "cover_art_url": "https://521dimensions.com/img/open-source/amplitudejs/album-art/from-dusk-to-dawn.jpg"
-  },
-  {
-    "name": "Anthem",
-    "artist": "Emancipator",
-    "album": "Soon It Will Be Cold Enough",
-    "url": "https://521dimensions.com/song/Anthem-Emancipator.mp3",
-    "cover_art_url": "https://521dimensions.com/img/open-source/amplitudejs/album-art/soon-it-will-be-cold-enough.jpg"
-  }
-]
-
-export function Player() {
+export function Player({songs}) {
   // todo: add types to values of hooks
-  const saveButtonRef = useRef()
+  const saveButtonRef = useRef<HTMLDivElement>(null)
   const [ isSongSaved, setIsSongSaved ] = useState(false)
   
   useEffect(() => {
@@ -75,17 +35,7 @@ export function Player() {
       },
       "songs": songs
     });
-
-   
-    // document.getElementById('song-saved').addEventListener('click', function(){
-    //   document.getElementById('song-saved').classList.toggle('saved');
-    // });
-    
-
-  // window.onkeydown = function(e) {
-  //   return !(e.keyCode == 32);
-  // };
-  }, [])
+  }, [songs])
  
   const saveSong = () => {
     // todo: toggle save particular to local state 
@@ -94,8 +44,9 @@ export function Player() {
   }
 
   // todo: break this component into smaller pieces to prevent rerendering the whole player on state change
+  // todo: an accessibility audit to ensure player is accessible
   return (
-    <div className="relative w-player flex flex-col rounded-xl shadow-player-light bg-player-light-background border border-player-light-border dark:shadow-player-dark dark:bg-player-dark-background dark:border-player-dark-border dark:backdrop-blur-xl">
+    <div className="relative w-player flex flex-col rounded-xl shadow-player-light bg-player-light-background border border-player-light-border">
       <div className="px-10 pt-10 pb-4 flex items-center z-50">
         <img data-amplitude-song-info="cover_art_url" className="w-24 h-24 rounded-md mr-6 border-b border-black border-opacity-10"/>
 
@@ -112,7 +63,7 @@ export function Player() {
           <span className="amplitude-duration-time text-xs font-sans tracking-wide font-medium text-purple-200"></span>
         </div>
       </div>
-      <div className="h-control-panel px-10 rounded-b-xl bg-control-panel-light-background border-t border-black border-opacity-10	 flex items-center justify-between z-50 dark:bg-control-panel-dark-background dark:border-gray-900">
+      <div className="h-control-panel px-3 sm:px-10 rounded-b-xl bg-control-panel-light-background border-t border-black border-opacity-10	 flex items-center justify-between z-50">
         <div ref={saveButtonRef} onClick={saveSong} className={`cursor-pointer ${ isSongSaved ? 'saved' : '' }`} id="song-saved">
           <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M25 7C25 3.68629 22.2018 1 18.75 1C16.1692 1 13.9537 2.5017 13 4.64456C12.0463 2.5017 9.83082 1 7.25 1C3.79822 1 1 3.68629 1 7C1 14.6072 8.49219 20.1822 11.6365 22.187C12.4766 22.7226 13.5234 22.7226 14.3635 22.187C17.5078 20.1822 25 14.6072 25 7Z" stroke="#ffffff" strokeWidth="2" strokeLinejoin="round"/>
@@ -129,7 +80,7 @@ export function Player() {
             <path d="M6 5L6 27" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>	
         </div>
-        <div className="cursor-pointer amplitude-play-pause w-24 h-24 rounded-full bg-[#c87095] border border-play-pause-light-border shadow-xl flex items-center justify-center dark:bg-play-pause-dark-background dark:border-play-pause-dark-border">
+        <div className="cursor-pointer amplitude-play-pause w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#c87095] border border-play-pause-light-border shadow-xl flex items-center justify-center dark:bg-play-pause-dark-background dark:border-play-pause-dark-border">
           <svg id="play-icon" className="ml-[10px]" width="31" height="37" viewBox="0 0 31 37" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M29.6901 16.6608L4.00209 0.747111C2.12875 -0.476923 0.599998 0.421814 0.599998 2.75545V33.643C0.599998 35.9728 2.12747 36.8805 4.00209 35.6514L29.6901 19.7402C29.6901 19.7402 30.6043 19.0973 30.6043 18.2012C30.6043 17.3024 29.6901 16.6608 29.6901 16.6608Z" className="fill-white dark:fill-slate-400"/>
           </svg>	
