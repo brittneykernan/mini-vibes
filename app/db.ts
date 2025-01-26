@@ -1,17 +1,15 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import { pgTable, serial, varchar } from 'drizzle-orm/pg-core';
+import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
 import { eq } from 'drizzle-orm';
-import postgres from 'postgres';
 import { genSaltSync, hashSync } from 'bcrypt-ts';
+import { drizzle } from 'drizzle-orm/libsql';
+import { createClient } from "@libsql/client";
 
-// Optionally, if not using email/pass login, you can
-// use the Drizzle adapter for Auth.js / NextAuth
-// https://authjs.dev/reference/adapter/drizzle
-let client = postgres(`${process.env.POSTGRES_URL!}?sslmode=require`);
+const client = createClient({ url: "file:local.db" });
 let db = drizzle(client);
 
 export async function getUser(email: string) {
   const users = await ensureTableExists();
+  
   return await db.select().from(users).where(eq(users.email, email));
 }
 
@@ -24,26 +22,30 @@ export async function createUser(email: string, password: string) {
 }
 
 async function ensureTableExists() {
-  const result = await client`
-    SELECT EXISTS (
-      SELECT FROM information_schema.tables 
-      WHERE table_schema = 'public' 
-      AND table_name = 'User'
-    );`;
+  const result = await client.execute(
+      `SELECT name FROM sqlite_master WHERE type='table' AND name='User';`
+  );
 
-  if (!result[0].exists) {
-    await client`
-      CREATE TABLE "User" (
-        id SERIAL PRIMARY KEY,
-        email VARCHAR(64),
-        password VARCHAR(64)
-      );`;
+  if (result.rows.length === 0) {
+    console.log("Table 'User' does not exist. Creating...");
+
+    const created = await client.execute(`
+      CREATE TABLE User (
+        id INTEGER PRIMARY KEY,
+        email TEXT NOT NULL UNIQUE,
+        password TEXT
+      );
+    `);
+
+    console.log("Table 'User' created successfully.", created);
+  } else {
+    console.log("Table 'User' already exists.");
   }
 
-  const table = pgTable('User', {
-    id: serial('id').primaryKey(),
-    email: varchar('email', { length: 64 }),
-    password: varchar('password', { length: 64 }),
+  const table = sqliteTable('User', {
+    id: integer('id').primaryKey(),
+    email: text('email').notNull().unique(),
+    password: text('password'),
   });
 
   return table;

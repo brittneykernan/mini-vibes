@@ -1,23 +1,16 @@
+"use client"
+
 import Link from 'next/link';
 import { Form } from 'app/form';
-import { redirect } from 'next/navigation';
-import { createUser, getUser } from 'app/db';
+import { useActionState } from 'react';
 import { SubmitButton } from 'app/submit-button';
+import { register } from '../actions/auth';
 
 export default function Login() {
-  async function register(formData: FormData) {
-    'use server';
-    let email = formData.get('email') as string;
-    let password = formData.get('password') as string;
-    let user = await getUser(email);
-
-    if (user.length > 0) {
-      return 'User already exists'; // TODO: Handle errors with useFormStatus
-    } else {
-      await createUser(email, password);
-      redirect('/login');
-    }
-  }
+  const [errorMessage, formAction, isPending] = useActionState(
+    register,
+    undefined,
+  );
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
@@ -28,7 +21,7 @@ export default function Login() {
             Create an account with your email and password
           </p>
         </div>
-        <Form action={register}>
+        <Form action={formAction}>
           <SubmitButton>Sign Up</SubmitButton>
           <p className="text-center text-sm text-gray-600">
             {'Already have an account? '}
@@ -37,6 +30,15 @@ export default function Login() {
             </Link>
             {' instead.'}
           </p>
+          <div
+            className="flex h-8 items-end space-x-1"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {errorMessage && (
+              <p className="text-sm text-red-500">{errorMessage}</p>
+            )}
+          </div>
         </Form>
       </div>
     </div>

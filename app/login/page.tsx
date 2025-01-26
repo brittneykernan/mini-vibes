@@ -1,9 +1,17 @@
+"use client"
+
 import Link from 'next/link';
 import { Form } from 'app/form';
-import { signIn } from 'app/auth';
 import { SubmitButton } from 'app/submit-button';
+import { useActionState } from 'react';
+import { authenticate } from '../actions/auth';
 
 export default function Login() {
+  const [errorMessage, formAction, isPending] = useActionState(
+    authenticate,
+    undefined,
+  );
+  
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
       <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
@@ -14,14 +22,7 @@ export default function Login() {
           </p>
         </div>
         <Form
-          action={async (formData: FormData) => {
-            'use server';
-            await signIn('credentials', {
-              redirectTo: '/protected',
-              email: formData.get('email') as string,
-              password: formData.get('password') as string,
-            });
-          }}
+          action={formAction}
         >
           <SubmitButton>Sign in</SubmitButton>
           <p className="text-center text-sm text-gray-600">
@@ -31,6 +32,15 @@ export default function Login() {
             </Link>
             {' for free.'}
           </p>
+          <div
+            className="flex h-8 items-end space-x-1"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {errorMessage && (
+              <p className="text-sm text-red-500">{errorMessage}</p>
+            )}
+          </div>
         </Form>
       </div>
     </div>
